@@ -10,6 +10,7 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    /* configuração pra utilizar o UIKit view code */
     var window: UIWindow?
     func application(
         _ application: UIApplication,

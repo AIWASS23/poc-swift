@@ -25,7 +25,7 @@ class CustomTableViewCell: UITableViewCell {
         boxView.layer.cornerRadius = 2.0;
         boxView.backgroundColor = UIColor.white;
 
-        // BoxView created using autolayout constraints.
+        // cria o BoxView usando restrições de layout automático.
         boxView.translatesAutoresizingMaskIntoConstraints = false
 
         let topConstraint = NSLayoutConstraint(item: boxView, attribute: .top, relatedBy: .equal, toItem: self.contentView, attribute: .top, multiplier: 1, constant: 12)
@@ -42,7 +42,7 @@ class CustomTableViewCell: UITableViewCell {
         self.contentView.addConstraint(bottoConstraint)
 
 
-        //Here label added to boxView
+        // adiciona a label ao boxView
         nameLabel = UILabel()
         boxView.addSubview(nameLabel)
         nameLabel.textColor = UIColor.black
@@ -63,12 +63,12 @@ class CustomTableViewCell: UITableViewCell {
         boxView.addConstraint(rightLabelConstraint)
 
 
-        //Separator line added to View
+        // adiciona linhas de separação à visualização
         let separatorView = UIView()
         boxView.addSubview(separatorView)
         separatorView.backgroundColor = UIColor.lightGray
 
-        // Separator line constraints
+        // linhas de separação constraints
         separatorView.translatesAutoresizingMaskIntoConstraints = false
 
         let heightSeparatorConstraint = NSLayoutConstraint(item: separatorView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 2.0)
@@ -86,7 +86,7 @@ class CustomTableViewCell: UITableViewCell {
 
 
 
-        // Golden line which do all the resizing of cell stuff
+        // Linha que faz todo o redimensionamento do material da célula
         let bottomSeparatorCosntraint = NSLayoutConstraint(item: separatorView, attribute: .bottom, relatedBy: .equal, toItem: boxView, attribute: .bottom, multiplier: 1, constant: -12)
         boxView.addConstraint(bottomSeparatorCosntraint)
 
@@ -106,7 +106,7 @@ class CustomTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+        // Configura a exibição para o estado selecionado
     }
 
 }

@@ -32,7 +32,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         myTableView.delegate = self
         self.view.addSubview(myTableView)
         myTableView.backgroundColor = UIColor.init(red: 245, green: 245, blue: 245, alpha: 1)
-        //Two Golden lines for resizing the table view cells
+
+        // Duas linhas para redimensionar as células da visualização da tabela
         myTableView.estimatedRowHeight = 100;
         myTableView.rowHeight = UITableView.automaticDimension;
         myTableView.separatorStyle = UITableViewCell.SeparatorStyle.none;
@@ -56,7 +57,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
 
  // Table View Delegates
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 0 // you should probably return 1
+        return 0 // provavelmente deve retornar 1
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
