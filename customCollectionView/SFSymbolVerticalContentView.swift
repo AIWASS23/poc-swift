@@ -19,13 +19,13 @@ class SFSymbolVerticalContentView: UIView, UIContentView {
             currentConfiguration
         }
         set {
-            // Make sure the given configuration is of type SFSymbolContentConfiguration
+            // verifica que a configuração fornecida seja do tipo SFSymbolContentConfiguration
             guard let newConfiguration = newValue as? SFSymbolContentConfiguration else {
                 return
             }
 
-            // Apply the new configuration to SFSymbolVerticalContentView
-            // also update currentConfiguration to newConfiguration
+            /* Aplica a nova configuração ao SFSymbolVerticalContentView
+             e atualiza currentConfiguration para newConfiguration */
             apply(configuration: newConfiguration)
         }
     }
@@ -34,10 +34,10 @@ class SFSymbolVerticalContentView: UIView, UIContentView {
     init(configuration: SFSymbolContentConfiguration) {
         super.init(frame: .zero)
 
-        // Create the content view UI
+        // Cria uma UI de exibição de conteúdo
         setupAllViews()
 
-        // Apply the configuration (set data to UI elements / define custom content view appearance)
+        // Aplica a configuração (defina os dados para os elementos da interface do usuário/defina a aparência da exibição de conteúdo personalizado)
         apply(configuration: configuration)
     }
 
@@ -51,7 +51,7 @@ private extension SFSymbolVerticalContentView {
 
     private func setupAllViews() {
 
-        // Add stack view to content view
+        // Adiciona exibição de pilha à exibição de conteúdo
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.alignment = .fill
@@ -65,36 +65,35 @@ private extension SFSymbolVerticalContentView {
             stackView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor),
         ])
 
-        // Add image view to stack view
+        // Adiciona exibição de imagem à exibição de pilha
         symbolImageView.contentMode = .scaleAspectFit
         stackView.addArrangedSubview(symbolImageView)
 
-        // Add label to stack view
+        // Adiciona rótulo à exibição de pilha
         nameLabel.textAlignment = .center
         stackView.addArrangedSubview(nameLabel)
     }
 
     private func apply(configuration: SFSymbolContentConfiguration) {
 
-        // Only apply configuration if new configuration and current configuration are not the same
+        // Aplica a configuração apenas se a nova configuração e a configuração atual não forem iguais
         guard currentConfiguration != configuration else {
             return
         }
 
-        // Replace current configuration with new configuration
+        // Substitue a configuração atual pela nova configuração
         currentConfiguration = configuration
 
-        // Set data to UI elements
+        // Define dados para elementos de interface do usuário
         nameLabel.text = configuration.name
         nameLabel.textColor = configuration.nameColor
 
-        // Set font weight
+        // Define peso da fonte
         if let fontWeight = configuration.fontWeight {
-            nameLabel.font = UIFont.systemFont(ofSize: nameLabel.font.pointSize,
-                                               weight: fontWeight)
+            nameLabel.font = UIFont.systemFont(ofSize: nameLabel.font.pointSize, weight: fontWeight)
         }
 
-        // Set symbol color & weight
+        // Define cor e peso do símbolo
         if
             let symbolColor = configuration.symbolColor,
             let symbolWeight = configuration.symbolWeight {

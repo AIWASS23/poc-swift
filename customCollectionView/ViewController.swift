@@ -45,15 +45,15 @@ class ViewController: UIViewController {
 
         self.title = "Custom Cell & Custom Congfiguration"
 
-        // Create list layout
+        // Cria layout de lista
         let layoutConfig = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
         let listLayout = UICollectionViewCompositionalLayout.list(using: layoutConfig)
 
-        // Create collection view with list layout
+        // Cria exibição de coleção com layout de lista
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: listLayout)
         view.addSubview(collectionView)
 
-        // Make collection view take up the entire view
+        // Faz com que a visualização da coleção ocupe toda a visualização
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 0.0),
@@ -62,33 +62,30 @@ class ViewController: UIViewController {
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0.0),
         ])
 
-        // Create cell registration that define how data should be shown in a cell
+        // Cria um cadastro de células que defina como os dados devem ser mostrados em uma célula
         let cellRegistration = UICollectionView.CellRegistration<SFSymbolVerticalListCell, SFSymbolItem> { (cell, indexPath, item) in
 
-            // For custom cell, we just need to assign the data item to the cell.
-            // The custom cell's updateConfiguration(using:) method will assign the
-            // content configuration to the cell
+            /* Para célula personalizada, precisamos apenas atribuir o item de dados à célula.
+             O método updateConfiguration(using:) da célula personalizada atribuirá o
+             configuração de conteúdo para a célula */
             cell.item = item
         }
 
-        // Define data source
+        // Define a origem dos dados
         dataSource = UICollectionViewDiffableDataSource<Section, SFSymbolItem>(collectionView: collectionView) {
             (collectionView: UICollectionView, indexPath: IndexPath, identifier: SFSymbolItem) -> UICollectionViewCell? in
 
-            // Dequeue reusable cell using cell registration (Reuse identifier no longer needed)
-            let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration,
-                                                                    for: indexPath,
-                                                                    item: identifier)
-
+            // Desenfileira célula reutilizável usando o registro da célula (o identificador de reutilização não é mais necessário)
+            let cell = collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: identifier)
             return cell
         }
 
-        // Create a snapshot that define the current state of data source's data
+        // Cri um snapshot que defina o estado atual dos dados da fonte de dados
         snapshot = NSDiffableDataSourceSnapshot<Section, SFSymbolItem>()
         snapshot.appendSections([.main])
         snapshot.appendItems(dataItems, toSection: .main)
 
-        // Display data on the collection view by applying the snapshot to data source
+        // Exibe dados na exibição da coleção aplicando o snapshot à origem dos dados
         dataSource.apply(snapshot, animatingDifferences: false)
     }
 

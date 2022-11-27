@@ -9,6 +9,8 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
+
+    /* configuração pra utilizar o UIKit view code */
     var window: UIWindow?
 
     func scene(_ scene: UIScene,

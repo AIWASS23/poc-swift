@@ -22,23 +22,23 @@ struct SFSymbolContentConfiguration: UIContentConfiguration, Hashable {
 
     func updated(for state: UIConfigurationState) -> Self {
 
-        // Perform update on parameters that does not related to cell's data itesm
+        /* Realiza atualização de parâmetros não relacionados ao item de dados da célula
+        Certifica que estamos lidando com a instância de UIcellConfigurationState */
 
-        // Make sure we are dealing with instance of UICellConfigurationState
         guard let state = state as? UICellConfigurationState else {
             return self
         }
 
-        // Updater self based on the current state
+        // atualiza automaticamente com base no estado atual
         var updatedConfiguration = self
         if state.isSelected {
-            // Selected state
+            // Estado selecionado
             updatedConfiguration.nameColor = .systemPink
             updatedConfiguration.symbolColor = .systemPink
             updatedConfiguration.fontWeight = .heavy
             updatedConfiguration.symbolWeight = .heavy
         } else {
-            // Other states
+            // outros estados
             updatedConfiguration.nameColor = .systemBlue
             updatedConfiguration.symbolColor = .systemBlue
             updatedConfiguration.fontWeight = .regular

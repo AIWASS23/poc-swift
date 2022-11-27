@@ -1,16 +1,20 @@
 //
 //  AppDelegate.swift
-//  PocCustomCellWithUICollectionView
+//  customCollectionView
 //
 //  Created by Marcelo De Araújo on 23/11/22.
 //
 
+
+
 import UIKit
-import CoreData
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+
+    /* configuração pra utilizar o UIKit view code */
+    
     var window: UIWindow?
     func application(
         _ application: UIApplication,

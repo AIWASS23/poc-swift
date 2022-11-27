@@ -1,6 +1,6 @@
 //
 //  SFSymbolVerticalListCell.swift
-//  PocCustomCellWithUICollectionView
+//  customCollectionView
 //
 //  Created by Marcelo De Araújo on 24/11/22.
 //
@@ -14,21 +14,22 @@ class SFSymbolVerticalListCell: UICollectionViewListCell {
 
     override func updateConfiguration(using state: UICellConfigurationState) {
 
-        // Create a new background configuration so that
-        // the cell must always have systemBackground background color
-        // This will remove the gray background when cell is selected
+        /*Crie uma nova configuração de segundo plano para que
+        a célula deve sempre ter a cor de fundo systemBackground
+        isso removerá o fundo cinza quando a célula for selecionada */
+
         var newBgConfiguration = UIBackgroundConfiguration.listGroupedCell()
         newBgConfiguration.backgroundColor = .systemBackground
         backgroundConfiguration = newBgConfiguration
 
-        // Create new configuration object and update it base on state
+        // Cria um novo objeto de configuração e atualize-o com base no estado
         var newConfiguration = SFSymbolContentConfiguration().updated(for: state)
 
-        // Update any configuration parameters related to data item
+        // Atualiza todos os parâmetros de configuração relacionados ao item de dados
         newConfiguration.name = item?.name
         newConfiguration.symbol = item?.image
 
-        // Set content configuration in order to update custom content view
+        // Define a configuração de conteúdo para atualizar a exibição de conteúdo personalizado
         contentConfiguration = newConfiguration
 
     }
