@@ -5,6 +5,10 @@
 //  Created by Marcelo de Araújo on 09/12/22.
 //
 
+/* 
+    Para aqueles que não podem usar async/await em seu aplicativo.
+    Aqui está uma implementação da camada de rede genérica em Swift usando callbacks (Result Type). 
+*/
 import SwiftUI
 
 struct ContentView: View {
