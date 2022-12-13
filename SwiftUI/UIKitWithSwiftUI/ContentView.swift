@@ -125,6 +125,14 @@ extension View {
 */
 
 struct GridStack<Content: View>: View {
+
+    /*
+    Permite criar qualquer número de views dentro de um grid fixo. 
+    O GridStack está em conformidade com o View protocolo e tem um número definido de linhas e colunas, 
+    e que dentro da grade haverá muitas células de conteúdo que devem estar em conformidade com o 
+    View protocolo.
+    */
+
     let rows: Int
     let columns: Int
     let content: (Int, Int) -> Content
@@ -136,6 +144,13 @@ struct GridStack<Content: View>: View {
     }
 
     var body: some View {
+
+        /*
+            O body combina várias pilhas verticais e horizontais para criar quantas células forem solicitadas. 
+            Não precisamos dizer o que há em cada célula, 
+            porque podemos obter isso chamando nosso content clousore com a linha e a coluna apropriadas.
+        */
+
         VStack {
             ForEach(0..<rows, id: \.self) { row in
                 HStack {
