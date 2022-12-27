@@ -10,6 +10,24 @@ struct MissionView: View {
     let crew: [CrewMember]
 
     var body: some View {
+
+        /*
+            O elemento GeometryReader do SwiftUI é usado para ler as dimensões de um elemento 
+            e fornecer essas informações aos elementos filhos. 
+            Ele é útil para criar elementos que se adaptam dinamicamente ao 
+            tamanho da tela ou de outros elementos, 
+            como gráficos ou imagens que se ajustam automaticamente ao tamanho da tela.
+
+            Propriedades:
+
+            size: o tamanho total do elemento GeometryReader.
+
+            frame(in:): o retângulo delimitador do elemento GeometryReader 
+            em relação a um elemento pai especificado.
+
+            safeAreaInsets: os espaços reservados da área segura do elemento GeometryReader.
+        */
+
         GeometryReader { geometry in
             ScrollView {
                 VStack {
