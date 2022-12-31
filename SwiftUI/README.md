@@ -108,7 +108,7 @@ _🌟 most interesting_
 
 ## 🌎 Comunidade
 
-#### 📗 Books
+#### 📗 Livros
 * **[Swift UI by Tutorials](https://store.raywenderlich.com/products/swiftui-by-tutorials)** by [Ray wenderlich](https://www.raywenderlich.com/)
 * **[Combine: Asynchronous Programming with Swift](https://store.raywenderlich.com/products/combine-asynchronous-programming-with-swift)** by [Ray wenderlich](https://www.raywenderlich.com/)
 * **[Catalyst by Tutorials](https://store.raywenderlich.com/products/catalyst-by-tutorials)** by [Ray wenderlich](https://www.raywenderlich.com/)
