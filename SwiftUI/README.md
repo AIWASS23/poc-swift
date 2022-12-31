@@ -1,4 +1,4 @@
-#SwiftUI
+# SwiftUI
 
 **SwiftUI** é uma maneira inovadora e excepcionalmente simples de criar interfaces de usuário em todas as plataformas da Apple com o poder do Swift. Podemos Criar interfaces de usuário para qualquer dispositivo Apple usando apenas um conjunto de ferramentas e APIs. Com uma sintaxe Swift declarativa que é fácil de ler e natural de escrever, o SwiftUI funciona perfeitamente com as novas ferramentas de design Xcode para manter seu código e design perfeitamente sincronizados. O suporte automático para Dynamic Type, Dark Mode, localização e acessibilidade significa que sua primeira linha de código **SwiftUI** já é o código de interface do usuário mais poderoso que você já escreveu.
 
@@ -20,9 +20,9 @@
     - [🖥 Videos](#-videos)
     - [❤️ Contributing](#️-contributing)
 
-##  by Apple
+##  Apple
 
-#### 📚 Documentation
+#### 📚 Documentação
 * **[SwiftUI](https://developer.apple.com/xcode/swiftui/)**
 * **[Official doc](https://developer.apple.com/documentation/swiftui)**
   * **Essentials**
