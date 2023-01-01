@@ -128,7 +128,7 @@ _🌟 most interesting_
 * **[SwiftUI Masterclass 2021 - iOS 14 App Development & Swift 5](https://www.udemy.com/course/swiftui-masterclass-course-ios-development-with-swift/)** . by [Robert Petras](https://www.linkedin.com/in/robertpetras/)
 * **🇨🇳[SwiftUI 中文教程 - SwiftUI-Tutorials](https://github.com/WillieWangWei/SwiftUI-Tutorials)**. by [WillieWangWei](https://github.com/WillieWangWei)
 * **[SwiftUI - The Complete Developer Course](https://www.udemy.com/share/102VaMAkofc1pbRHo=/)**. by [Stephen DeStefano](https://www.linkedin.com/in/stephen-destefano-973583193/)
-* **[CS193p - Developing Apps for iOS](https://cs193p.sites.stanford.edu)**. by [Stanford University](https://www.stanford.edu)
+
 
 #### 🔗 Websites
 * **[SwiftUI Hub - SwiftUI Tutorials & Resources](https://swiftuihub.com)**
