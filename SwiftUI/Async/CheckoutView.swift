@@ -76,7 +76,54 @@ struct CheckoutView: View {
                     .font(.title)
 
                 Button("Place Order") {
+
+                    /*
+                        O Task é uma classe de SwiftUI que permite que você execute código assíncrono 
+                        em uma visualização. Ele é útil quando você precisa realizar alguma tarefa 
+                        que pode levar algum tempo para ser concluída, como fazer uma solicitação 
+                        HTTP, mas não quer bloquear a interface do usuário enquanto isso.
+
+                        EXEMPLO
+                        Task {
+                            let url = URL(string: "https://example.com/api/endpoint")!
+                            let (data, _) = try await URLSession.shared.download(from: url)
+                            let response = try JSONDecoder().decode(ResponseType.self, from: data)
+                            // fazer algo com a resposta
+                        }
+
+                        Isso permitiria que você faça uma solicitação HTTP sem bloquear a interface 
+                        do usuário enquanto aguarda a resposta. Quando a resposta é recebida, 
+                        o código para tratá-la seria executado.
+
+                        Observe que o código no interior do Task deve ser marcado com o await 
+                        para indicar que é assíncrono e deve ser aguardado. Além disso, 
+                        é necessário adicionar "async" à assinatura da função que contém o Task.
+                    */
                     Task {
+
+                        /*
+                            O await é um modificador de função em Swift que indica que a função é assíncrona
+                            e deve ser aguardada. Ele é usado como parte do padrão de programação assíncrono 
+                            "Async/Await" e pode ser usado para aguardar a conclusão de uma tarefa assíncrona, 
+                            como fazer uma solicitação HTTP ou ler um arquivo.
+
+                            Para usar o await, preciso marcar a função como "async" e usar o await 
+                            antes da chamada da função assíncrona. Por exemplo:
+
+                            async func loadData() {
+                                let data = try await loadDataFromAPI()
+                                // fazer algo com os dados
+                            }
+
+                            Isso permitiria que você chamasse a função loadDataFromAPI() 
+                            de forma assíncrona e aguardasse a conclusão antes de continuar a 
+                            executar o código.
+
+                            Observe que o await só pode ser usado dentro de uma função marcada 
+                            como "async" e que está sendo chamada de uma outra 
+                            função marcada como "async". Além disso, a função que é chamada com o 
+                            await deve retornar uma instância de Task ou TaskPublisher.
+                        */
                         await placeOrder()
                     }
                 }
