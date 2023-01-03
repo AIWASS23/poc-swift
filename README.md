@@ -13,6 +13,10 @@ Estudo sobre a linguagem swift e os frameworks de desenvolvimento iOS
 
 Veja o arquivo [CONTRIBUTING.md](https://github.com/AIWASS23/poc-swift/blob/main/CONTRIBUTING.md) para detalhes.
 
+## 🔍 Pesquisas
+
+Veja o arquivo [PESQUISAS.md](https://github.com/AIWASS23/poc-swift/blob/main/PESQUISAS.md) para detalhes.
+
 ## 📌 Versão
 
 | Version | Supported          |
