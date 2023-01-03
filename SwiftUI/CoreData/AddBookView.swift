@@ -81,6 +81,18 @@ struct AddBookView: View {
                             objetos gerenciados (NSManagedObject). Em seguida, você pode usar este 
                             gerenciador de contexto para criar, atualizar, ler e excluir objetos gerenciados 
                             em sua base de dados.
+
+                            Você também pode usar um FetchedResultsController para monitorar as 
+                            alterações em sua base de dados e atualizar a sua interface de usuário 
+                            automaticamente. Para fazer isso, basta criar um FetchedResultsController 
+                            com uma requisição de busca para a sua entidade de dados e usá-lo como um 
+                            provedor de conteúdo para a sua lista:
+
+                            @FetchRequest(fetchRequest: Todo.fetchRequest()) var todos: FetchedResults<Todo>
+
+                            List(todos, id: \.self) { todo in
+                                Text(todo.title)
+                            }
                         */
                         let newBook = Book(context: moc)
                         newBook.id = UUID()
