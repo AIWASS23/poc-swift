@@ -44,7 +44,30 @@ struct ContentView: View {
         if viewModel.isUnlocked {
             ZStack {
                 Map(coordinateRegion: $viewModel.mapRegion, annotationItems: viewModel.locations) { location in
+
+                /*
+                    Esse componente exibe um mapa interativo em sua aplicação SwiftUI e 
+                    permite adicionar anotações e sobreposições ao mapa.
+                    O componente Map é exibido com uma região de coordenadas dada pela propriedade 
+                    $viewModel.mapRegion e uma lista de anotações fornecida pela propriedade 
+                    viewModel.locations. Cada anotação é criada usando o componente MapAnnotation, 
+                    que é inicializado com as coordenadas do local.
+
+                    O componente Map tem várias propriedades que você pode usar para personalizar 
+                    sua aparência e comportamento, como colorScheme, showsUserLocation e showsScale.
+                    Mais informações: https://developer.apple.com/documentation/swiftui/map
+                */
                     MapAnnotation(coordinate: location.coordinate) {
+
+                        /*
+                            O componente MapAnnotation da SwiftUI é usado para adicionar anotações a 
+                            um mapa exibido pelo componente Map. Ele é inicializado com as coordenadas 
+                            do local a ser marcado no mapa e pode conter qualquer conteúdo SwiftUI que 
+                            você deseje exibir para o usuário. O componente MapAnnotation também tem 
+                            várias propriedades que você pode usar para personalizar a anotação, como title e subtitle.
+                            Mais informações: https://developer.apple.com/documentation/swiftui/mapannotation
+                        */
+
                         VStack {
                             Image(systemName: "star.circle")
                                 .resizable()
@@ -102,11 +125,5 @@ struct ContentView: View {
             .foregroundColor(.white)
             .clipShape(Capsule())
         }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
     }
 }
