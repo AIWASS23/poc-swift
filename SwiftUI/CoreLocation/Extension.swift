@@ -256,3 +256,21 @@ extension ContentView {
         }
     }
 }
+
+extension FileManager {
+    static var documentsDirectory: URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+}
+
+/*
+    A extension da classe FileManager tem uma propriedade computada chamada documentsDirectory. 
+    Essa propriedade retorna o caminho para o diretório de documentos do usuário no dispositivo.
+
+    A propriedade documentsDirectory não tem um valor armazenado explicitamente, mas é calculada 
+    quando é acessada. No caso dessa propriedade, o caminho para o diretório de documentos é 
+    obtido usando o método urls(for:in:) da classe FileManager, que retorna uma matriz de 
+    URLs para os diretórios especificados. O primeiro item da matriz é então retornado 
+    como o caminho para o diretório de documentos.
+*/
