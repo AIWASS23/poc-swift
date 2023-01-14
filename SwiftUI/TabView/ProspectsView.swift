@@ -181,17 +181,151 @@ struct ProspectsView: View {
                 content.body = "Não esqueça de fazer a tarefa importante hoje"
                 content.badge = 1
             */
-            
+
             let content = UNMutableNotificationContent()
+
+            /*
+                UNMutableNotificationContent é uma classe do framework UserNotifications do iOS que permite 
+                criar conteúdo para notificações locais e remotas. Ele fornece uma variedade de 
+                propriedades para configurar o conteúdo da notificação, como título, corpo, anexos e 
+                dados adicionais. Exemplo:
+
+                let content = UNMutableNotificationContent()
+                content.title = "Lembrete"
+                content.body = "Não se esqueça de comprar leite hoje"
+                content.sound = UNNotificationSound.default
+
+                Em seguida, você pode atribuir o objeto UNMutableNotificationContent criado ao objeto 
+                UNNotificationRequest, que é o objeto responsável por agendar a notificação.
+
+                let request = UNNotificationRequest(
+                    identifier: "LembreteDeComprarLeite", 
+                    content: content, 
+                    trigger: nil)
+
+                E finalmente agendar a notificação
+
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+            */
             content.title = "Contact \(prospect.name)"
             content.subtitle = prospect.emailAddress
             content.sound = UNNotificationSound.default
 
+            /*
+                UNNotificationSound é uma enumeração do framework UserNotifications do iOS que permite 
+                especificar o som que será reproduzido quando a notificação for exibida. Ele inclui 
+                valores pré-definidos para os sons padrão do sistema, como .default, .none e também é 
+                possível especificar um som personalizado com um arquivo de som. Exemplo:
+
+                let content = UNMutableNotificationContent()
+                content.title = "Lembrete"
+                content.body = "Não se esqueça de comprar leite hoje"
+                content.sound = UNNotificationSound.default
+
+                ou
+
+                content.sound = UNNotificationSound(
+                    named: UNNotificationSoundName(rawValue: "customSound.caf"))
+
+                Note que para utilizar um som personalizado, você precisa incluir o arquivo de som em 
+                seu projeto e especificar o caminho do arquivo no construtor.
+            */
+
             var dateComponents = DateComponents()
+
+            /*
+                DateComponents é uma classe do framework Foundation do iOS que representa uma data com 
+                componentes separados, como ano, mês, dia, hora, minuto e segundo. Ele permite criar uma 
+                data a partir de componentes individuais ou extrair componentes de uma data existente. Exemplo:
+
+                // Criando uma data com componentes
+                let dateComponents = DateComponents(
+                    calendar: Calendar.current, 
+                    year: 2021, 
+                    month: 12, 
+                    day: 25)
+
+                let date = dateComponents.date
+
+                // Extraindo componentes de uma data existente
+
+                let date = Date()
+                let calendar = Calendar.current
+                let year = calendar.component(.year, from: date)
+                let month = calendar.component(.month, from: date)
+                let day = calendar.component(.day, from: date)
+
+                Você também pode usar o método date(from:) da classe Calendar para criar uma data a 
+                partir de componentes:
+
+                let date = Calendar.current.date(from: dateComponents)
+
+                Além disso, pode-se utilizar o método dateComponents(_:from:) da classe Calendar 
+                para extrair componentes de uma data existente:
+
+                let dateComponents = Calendar.current.dateComponents([.year, .month, .day], from: date)
+            */
+
             dateComponents.hour = 9
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
 
+            /*
+                UNTimeIntervalNotificationTrigger é uma classe do framework UserNotifications do iOS que 
+                permite agendar uma notificação para ser exibida após um intervalo de tempo específico. 
+                Ele é inicializado com um tempo em segundos e é usado para criar um gatilho para uma 
+                notificação. Exemplo:
+
+                let content = UNMutableNotificationContent()
+                content.title = "Lembrete"
+                content.body = "Não se esqueça de comprar leite hoje"
+                content.sound = UNNotificationSound.default
+
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: false)
+                let request = UNNotificationRequest(
+                    identifier: "LembreteDeComprarLeite", 
+                    content: content, 
+                    trigger: trigger)
+
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+
+                Neste exemplo acima, a notificação será exibida após 60 segundos e não será repetida.
+                Você pode também usar a classe UNCalendarNotificationTrigger ou 
+                UNLocationNotificationTrigger para agendar notificações baseadas em uma data ou em uma 
+                localização específica.
+            */
+
             let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+
+            /*
+                UNNotificationRequest é uma classe do framework UserNotifications do iOS que representa 
+                uma notificação agendada. Ele é inicializado com um identificador único, o conteúdo da 
+                notificação (instância de UNNotificationContent) e o gatilho (instância de 
+                UNNotificationTrigger) que determina quando a notificação será exibida. Exemplo:
+
+                let content = UNMutableNotificationContent()
+                content.title = "Lembrete"
+                content.body = "Não se esqueça de comprar leite hoje"
+                content.sound = UNNotificationSound.default
+
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: false)
+                let request = UNNotificationRequest(
+                    identifier: "LembreteDeComprarLeite", 
+                    content: content, 
+                    trigger: trigger)
+
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+
+                Aqui um objeto UNNotificationRequest é criado com um identificador único 
+                "LembreteDeComprarLeite", o conteúdo da notificação e o gatilho que a fará ser exibida 
+                após 60 segundos. Este objeto é então adicionado à instância de UNUserNotificationCenter 
+                para ser agendado.
+
+                A classe UNNotificationRequest também fornece métodos para remover notificações agendadas, 
+                como: 
+                removePendingNotificationRequests(withIdentifiers:)
+                removeDeliveredNotifications(withIdentifiers:).
+            */
+
             center.add(request)
         }
 
