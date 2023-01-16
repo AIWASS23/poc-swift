@@ -236,12 +236,12 @@ struct SimpleAlignmentContentView: View {
 struct ContentView: View {
     var body: some View {
         HStack(alignment: .lastTextBaseline) {
-            Text("Live")
+            Text("Livros")
                 .font(.caption)
-            Text("long")
-            Text("and")
+            Text("Longe")
+            Text("Eureca")
                 .font(.title)
-            Text("prosper")
+            Text("Prospero")
                 .font(.largeTitle)
         }
     }
