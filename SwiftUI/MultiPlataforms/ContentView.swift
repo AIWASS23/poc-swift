@@ -117,6 +117,16 @@ struct ContentView: View {
         if searchText.isEmpty {
             return resorts
         } else {
+
+            /*
+                localizedCaseInsensitiveContains" é um método de String do Swift que verifica se uma string 
+                contém outra string, independentemente do caso das letras. Ele é usado para fazer 
+                comparações de strings sem diferenciar maiúsculas de minúsculas. Esse método retorna um 
+                valor booleano, verdadeiro se a string chamada contiver a string passada como argumento e 
+                falso caso contrário. 
+                https://developer.apple.com/documentation/swift/stringprotocol/localizedcaseinsensitivecontains(_:)/
+            */
+
             return resorts.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
         }
     }
