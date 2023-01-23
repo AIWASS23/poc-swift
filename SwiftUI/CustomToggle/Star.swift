@@ -66,6 +66,7 @@ struct Star: Shape {
         }
         
         // descobre quanto espaço não utilizado tem na parte inferior do nosso retângulo de desenho
+        
         let unusedSpace = (rect.height / 2 - bottomEdge) / 2
         
         // cria e aplica a transformação que move o caminho para baixo nessa quantidade, centralizando a forma verticalmente
