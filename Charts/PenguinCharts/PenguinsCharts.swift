@@ -16,7 +16,13 @@ struct PenguinChart2D: View {
         yDataRange: ChartBinRange<Float>,
         frequency: Int
     )
-    
+
+    /*
+        Um typealias é uma palavra-chave no Swift que permite criar um nome alternativo para um tipo 
+        existente. Isso é útil quando você deseja se referir a um tipo existente por um nome mais fácil de 
+        lembrar ou mais descritivo. Por exemplo, você poderia criar um typealias para o tipo Int chamado 
+        Age, de forma que quando você fizer referência a Age em seu código, ele será interpretado como um Int.
+    */
     
     var bins: [BinnedValue] {
         let flipperLengthBins = NumberBins(
