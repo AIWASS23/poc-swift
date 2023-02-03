@@ -43,6 +43,13 @@ class WhackSlot: SKNode {
         cropNode.addChild(charNode)
         
         addChild(cropNode)
+
+        /*
+            O SKCropNode é um tipo de nó do SpriteKit, usado para cortar conteúdos de outros nós. Ele é usado 
+            para definir uma região de recorte para seus filhos, limitando a área visível dos nós filhos ao 
+            interior da máscara. Desta forma, apenas a parte dos nós filhos que estiver dentro da região 
+            definida pela máscara será visível na cena.
+        */
     }
     
     func show(hideTime: Double) {
@@ -61,6 +68,13 @@ class WhackSlot: SKNode {
         } else {
             charNode.texture = SKTexture(imageNamed: "penguinEvil")
             charNode.name = "charEnemy"
+
+            /*
+                SKTexture é uma classe do SpriteKit que representa uma imagem, textura ou uma seleção de 
+                pixels que pode ser aplicada a um SKSpriteNode ou outra forma gráfica dentro do framework. 
+                O objetivo da SKTexture é fornecer uma maneira de carregar, armazenar e aplicar imagens para 
+                elementos gráficos dentro de um jogo ou aplicativo feito com o SpriteKit.
+            */
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + (hideTime * 3.5)) { [unowned self] in
