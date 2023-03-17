@@ -12,6 +12,7 @@ import XCTest
         func testMyClass() {
             let myClass = MyClass()
             ...
+            
         }
     }
 
