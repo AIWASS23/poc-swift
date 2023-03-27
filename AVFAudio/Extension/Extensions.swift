@@ -11,9 +11,11 @@ extension UIView {
 }
 
 extension String {
+
     func capitalizeFirstLetter() -> String {
         return self.prefix(1).uppercased() + self.lowercased().dropFirst()
     }
+
     static func shortenTimeFormatter(timeInterval: Double) -> String? {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.minute, .second]
@@ -21,12 +23,28 @@ extension String {
         formatter.zeroFormattingBehavior = .pad
         return formatter.string(from: TimeInterval(timeInterval))
     }
+
     static func minuteAndSecondFormatter(timeInterval: Double) -> String {
         let formatter = DateComponentsFormatter()
         formatter.allowedUnits = [.minute, .second]
         formatter.unitsStyle = .spellOut
         return formatter.string(from: TimeInterval(timeInterval))!
     }
+
+    /*
+        A extensão String adiciona três métodos:
+
+        O método capitalizeFirstLetter retorna uma nova string com a primeira letra em maiúscula e 
+        todas as outras letras em minúsculas.
+
+        O método shortenTimeFormatter retorna uma representação legível do tempo em minutos e segundos. 
+        Ele usa um DateComponentsFormatter para formatar o tempo em uma string no estilo posicional 
+        (por exemplo, "01:30").
+
+        O método minuteAndSecondFormatter também retorna uma representação legível do tempo em minutos 
+        e segundos. Ele usa um DateComponentsFormatter para formatar o tempo em uma string por extenso 
+        (por exemplo, "um minuto e trinta segundos").
+    */
 }
 
 extension Bundle {
@@ -50,5 +68,12 @@ extension Bundle {
         }
 
         return nil
+
+        /*
+            A extensão Bundle adiciona um método genérico decode que pode ser usado para carregar um 
+            arquivo JSON da pasta de recursos do aplicativo e decodificá-lo em um objeto de um tipo 
+            específico que implementa o protocolo Decodable. Se houver um erro ao carregar ou 
+            decodificar o arquivo JSON, o método retorna nulo e exibe um erro.
+        */
     }
 }
