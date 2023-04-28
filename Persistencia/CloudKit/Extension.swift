@@ -112,3 +112,34 @@ extension CoreDataStack {
     armazenamento compartilhado ou se ele tem um registro de compartilhamento associado a ele.
 
 */
+
+extension AddDestinationView {
+    private func loadImage() {
+        guard let inputImage = inputImage else { return }
+        image = Image(uiImage: inputImage)
+    }
+
+    private func createNewDestination() {
+        let destination = Destination(context: managedObjectContext)
+        destination.id = UUID()
+        destination.createdAt = Date.now
+        destination.caption = caption
+        destination.details = details
+        let imageData = inputImage?.jpegData(compressionQuality: 0.8)
+        destination.image = imageData
+        stack.save()
+    }
+}
+
+/*
+    A extensão AddDestinationView adiciona duas funções privadas: loadImage() e createNewDestination().
+
+    A função loadImage() recebe uma imagem como entrada e a converte em um objeto Image do SwiftUI. 
+    Isso é usado para exibir a imagem selecionada na interface do usuário.
+
+    A função createNewDestination() cria um novo objeto Destination no contexto do Core Data. Ele 
+    define as propriedades desse objeto com os valores capturados da interface do usuário, incluindo 
+    um identificador único gerado aleatoriamente, a data atual, a legenda, os detalhes e uma imagem 
+    em formato JPEG. A função, então, salva o objeto no Core Data usando o método save() da instância 
+    da classe CoreDataStack.
+*/
