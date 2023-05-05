@@ -203,6 +203,14 @@ class NaiveBayes<T> {
         }
 
         return self
+
+        /*
+            realiza o treinamento do modelo Naive Bayes. Ele percorre cada classe presente 
+            nos dados de treinamento e para cada uma delas, percorre cada recurso presente 
+            na matriz de dados, calcula as estatísticas necessárias para a classificação do 
+            recurso de acordo com o tipo de Naive Bayes selecionado e armazena essas 
+            estatísticas em um dicionário.
+        */
     }
 
     func classify(with input: [T]) -> Int {
@@ -215,6 +223,11 @@ class NaiveBayes<T> {
         }
 
         return `class`
+
+        /*
+            recebe um conjunto de recursos de entrada e retorna a classe mais provável de 
+            acordo com o modelo treinado. 
+        */
     }
 
     func classifyProba(with input: [T]) -> [(Int, Double)] {
@@ -244,5 +257,9 @@ class NaiveBayes<T> {
         }
 
         return normalized
+
+        /*
+            retorna as probabilidades para cada classe de acordo com os recursos de entrada.
+        */
     }
 }
