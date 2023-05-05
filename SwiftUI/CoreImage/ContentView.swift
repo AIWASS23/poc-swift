@@ -75,7 +75,7 @@ struct ContentView: View {
     @State private var inputImage: UIImage?
     @State private var processedImage: UIImage?
 
-    @State private var currentFilter: CIFilter = 
+    @State private var currentFilter: CIFilter 
     
     /*
         CIFilter.sepiaTone() é uma função do Core Image que cria um novo filtro de tonalidade sépia. 
