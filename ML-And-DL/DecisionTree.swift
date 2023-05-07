@@ -11,28 +11,6 @@ class TreeNode {
     var branches: [String: TreeNode]?
 }
 
-//class TreeNode {
-//    var attribute: String!
-//    var classLabel: String!
-//    var branches: [String: TreeNode]!
-//}
-
-//public class TreeNode<T> {
-//    public var value: T
-//
-//    public weak var parent: TreeNode?
-//    public var children = [TreeNode<T>]()
-//
-//    public init(value: T) {
-//        self.value = value
-//    }
-//
-//    public func addChild(_ node: TreeNode<T>) {
-//        children.append(node)
-//        node.parent = self
-//    }
-//}
-
 func createDecisionTree(trainingData: [Example], attributes: [String]) -> TreeNode {
     let root = trainHelper(trainingData: trainingData, attributes: attributes)
     return root
@@ -115,20 +93,29 @@ func predict(example: Example, decisionTree: TreeNode) -> String {
         return classLabel
     }
     
-    let attribute = decisionTree.attribute!
-    let attributeValue = example.attributes[attribute]!
-    let branch = decisionTree.branches![attributeValue]! // resolver em casa
-
+    guard let attribute = decisionTree.attribute,
+          let attributeValue = example.attributes[attribute],
+          let branch = decisionTree.branches?[attributeValue] as? TreeNode
+    else {
+        return "Necesito 19 Refuerzos"
+    }
+    
     return predict(example: example, decisionTree: branch)
 }
 
 let irisData = [
     Example(attributes: ["sepal length": "5.1", "sepal width": "3.5", "petal length": "1.4", "petal width": "0.2"], classLabel: "Iris-setosa"),
     Example(attributes: ["sepal length": "4.9", "sepal width": "3.0", "petal length": "1.4", "petal width": "0.2"], classLabel: "Iris-setosa"),
+    Example(attributes: ["sepal length": "4.8", "sepal width": "3.1", "petal length": "1.4", "petal width": "0.2"], classLabel: "Iris-setosa"),
+
     Example(attributes: ["sepal length": "7.0", "sepal width": "3.2", "petal length": "4.7", "petal width": "1.4"], classLabel: "Iris-versicolor"),
     Example(attributes: ["sepal length": "6.4", "sepal width": "3.2", "petal length": "4.5", "petal width": "1.5"], classLabel: "Iris-versicolor"),
+    Example(attributes: ["sepal length": "6.5", "sepal width": "3.2", "petal length": "4.6", "petal width": "1.4"], classLabel: "Iris-versicolor"),
+
     Example(attributes: ["sepal length": "6.3", "sepal width": "3.3", "petal length": "6.0", "petal width": "2.5"], classLabel: "Iris-virginica"),
-    Example(attributes: ["sepal length": "5.8", "sepal width": "2.7", "petal length": "5.1", "petal width": "1.9"], classLabel: "Iris-virginica")
+    Example(attributes: ["sepal length": "5.8", "sepal width": "2.7", "petal length": "5.1", "petal width": "1.9"], classLabel: "Iris-virginica"),
+    Example(attributes: ["sepal length": "5.9", "sepal width": "2.8", "petal length": "5.0", "petal width": "1.9"], classLabel: "Iris-virginica")
+
 ]
 
 let attributes = ["sepal length", "sepal width", "petal length", "petal width"]
