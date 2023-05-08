@@ -18,14 +18,14 @@ func createDecisionTree(trainingData: [Example], attributes: [String]) -> TreeNo
 
 func trainHelper(trainingData: [Example], attributes: [String]) -> TreeNode {
     let node = TreeNode()
-    
+
     // caso 1: todos os exemplos têm a mesma classe
     let classes = Set(trainingData.map { $0.classLabel })
     if classes.count == 1 {
         node.classLabel = classes.first
         return node
     }
-    
+
     // caso 2: não há mais atributos para dividir
     if attributes.count == 0 {
         let classCounts = Dictionary(grouping: trainingData, by: { $0.classLabel })
@@ -34,11 +34,11 @@ func trainHelper(trainingData: [Example], attributes: [String]) -> TreeNode {
         node.classLabel = mostCommonClass
         return node
     }
-    
+
     // caso 3: escolhe o melhor atributo para dividir os exemplos
-    let (bestAttribute, bestGain) = chooseBestAttribute(trainingData: trainingData, attributes: attributes)
+    let (bestAttribute, bestGain) = id3(trainingData: trainingData, attributes: attributes)
     node.attribute = bestAttribute
-    
+
     // caso 4: cria ramos para cada valor do melhor atributo
     var branches = [String: TreeNode]()
     for attributeValue in Set(trainingData.map { $0.attributes[bestAttribute]! }) {
@@ -48,23 +48,23 @@ func trainHelper(trainingData: [Example], attributes: [String]) -> TreeNode {
         branches[attributeValue] = subtree
     }
     node.branches = branches
-    
+
     return node
 }
 
-func chooseBestAttribute(trainingData: [Example], attributes: [String]) -> (String, Double) {
+func id3(trainingData: [Example], attributes: [String]) -> (String, Double) {
     let classCounts = Dictionary(grouping: trainingData, by: { $0.classLabel })
         .mapValues { $0.count }
     let totalExamples = Double(trainingData.count)
     let baseEntropy = entropy(probabilities: classCounts.mapValues { Double($0) / totalExamples })
-    
+
     var bestAttribute = ""
     var bestGain = 0.0
-    
+
     for attribute in attributes {
         let attributeValues = Set(trainingData.map { $0.attributes[attribute]! })
         var attributeEntropy = 0.0
-        
+
         for attributeValue in attributeValues {
             let examplesWithAttributeValue = trainingData.filter { $0.attributes[attribute] == attributeValue }
             let classCounts = Dictionary(grouping: examplesWithAttributeValue, by: { $0.classLabel })
@@ -73,14 +73,14 @@ func chooseBestAttribute(trainingData: [Example], attributes: [String]) -> (Stri
             let probability = totalExamplesWithAttributeValue / totalExamples
             attributeEntropy += probability * entropy(probabilities: classCounts.mapValues { Double($0) / totalExamplesWithAttributeValue })
         }
-        
+
         let informationGain = baseEntropy - attributeEntropy
         if informationGain > bestGain {
             bestAttribute = attribute
             bestGain = informationGain
         }
     }
-    
+
     return (bestAttribute, bestGain)
 }
 
@@ -92,14 +92,14 @@ func predict(example: Example, decisionTree: TreeNode) -> String {
     if let classLabel = decisionTree.classLabel {
         return classLabel
     }
-    
+
     guard let attribute = decisionTree.attribute,
           let attributeValue = example.attributes[attribute],
           let branch = decisionTree.branches?[attributeValue] as? TreeNode
     else {
-        return "Necesito 19 Refuerzos"
+        return "Necesito 17 refuerzos rsrsrsrs"
     }
-    
+
     return predict(example: example, decisionTree: branch)
 }
 
@@ -129,5 +129,3 @@ let prediction2 = predict(example: example2, decisionTree: decisionTree)
 
 print("Prediction for example 1: \(prediction1)")
 print("Prediction for example 2: \(prediction2)")
-
-
