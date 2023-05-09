@@ -99,6 +99,15 @@ let points = [
     Point(x: 14, y: 12),
     Point(x: 15, y: 13)
 ]
-let kMeans = KMeans(k: 2, points: points)
-kMeans.run(distanceFunction: kMeans.manhattanDistance)
-print("Centroids:", kMeans.centroids)
+let kMeans0: KMeans = KMeans(k: 2, points: points)
+let kMeans1: KMeans = KMeans(k: 2, points: points)
+let kMeans2: KMeans = KMeans(k: 2, points: points)
+
+kMeans0.run(distanceFunction: kMeans0.manhattanDistance)
+kMeans1.run(distanceFunction: kMeans1.chebyshevDistance)
+kMeans2.run(distanceFunction: kMeans2.euclideanDistance)
+
+print("Centroids:", kMeans0.centroids)
+print("Centroids:", kMeans1.centroids)
+print("Centroids:", kMeans2.centroids)
+
