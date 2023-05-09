@@ -24,7 +24,7 @@ class KMeans {
         self.centroids = Array(randomPoints.prefix(k))
     }
     
-    func run(maxIterations: Int = 100) {
+    func run(distanceFunction: (Point, Point) -> Double, maxIterations: Int = 100) {
         for _ in 0..<maxIterations {
             // Agrupa os pontos em clusters de acordo com os centróides atuais
             var clusters = Array(repeating: [Point](), count: k)
@@ -33,7 +33,7 @@ class KMeans {
                 var closestCentroidIndex = 0
                 for i in 0..<k {
                     let centroid = centroids[i]
-                    let distance = euclideanDistance(point, centroid)
+                    let distance = distanceFunction(point, centroid)
                     if distance < minDistance {
                         minDistance = distance
                         closestCentroidIndex = i
@@ -61,47 +61,22 @@ class KMeans {
             }
         }
     }
+
     
-    /*
-        Calcula a distância euclidiana entre dois pontoscalcula a distância Euclidiana entre dois pontos em 
-        um espaço bidimensional, representados pelas estruturas de dados Point.
-    */
-    private func euclideanDistance(_ p1: Point, _ p2: Point) -> Double {
+    func euclideanDistance(_ p1: Point, _ p2: Point) -> Double {
         let dx = p1.x - p2.x
         let dy = p1.y - p2.y
         return sqrt(dx*dx + dy*dy)
     }
     
-    /*
-        Calcula a distância de Manhattan (ou distância retangular) entre dois pontos em um espaço 
-        bidimensional, representados pelas estruturas de dados Point. 
-    */
-    private func manhattanDistance(_ p1: Point, _ p2: Point) -> Double {
+    func manhattanDistance(_ p1: Point, _ p2: Point) -> Double {
         return abs(p1.x - p2.x) + abs(p1.y - p2.y)
     }
     
-    /*
-        Calcula a distância de Chebyshev (ou distância de Xadrez) entre dois pontos em um espaço N-dimensional, 
-        representados por vetores de coordenadas.
-    */
-    private func chebyshevDistance(_ point1: [Double], _ point2: [Double]) -> Double {
-
-        /*
-            Verifica uma condição necessária para avançar. Use esta função para detectar condições que devem 
-            impedir o programa de prosseguir, mesmo no código de envio.
-        */
-        precondition(point1.count == point2.count, "The points must have the same number of coordinates")
-        
-        var maxDistance = 0.0
-        
-        for i in 0..<point1.count {
-            let distance = abs(point1[i] - point2[i])
-            if distance > maxDistance {
-                maxDistance = distance
-            }
-        }
-        
-        return maxDistance
+    func chebyshevDistance(_ p1: Point, _ p2: Point) -> Double {
+        let deltaX = abs(p1.x - p2.x)
+        let deltaY = abs(p1.y - p2.y)
+        return max(deltaX, deltaY)
     }
 }
 
@@ -125,5 +100,5 @@ let points = [
     Point(x: 15, y: 13)
 ]
 let kMeans = KMeans(k: 2, points: points)
-kMeans.run()
+kMeans.run(distanceFunction: kMeans.manhattanDistance)
 print("Centroids:", kMeans.centroids)
