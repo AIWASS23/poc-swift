@@ -18,6 +18,7 @@ func stochasticGradientDescent(x: [Double], y: [Double], alpha: Double, numItera
     return theta
 }
 
+// Calcula o produto interno (também conhecido como produto escalar) de duas matrizes de números de ponto flutuante (double) a e b, representadas como vetores unidimensionais.
 func dot(_ a: [Double], _ b: [Double]) -> Double {
     return zip(a, b).map(*).reduce(0, +)
 }

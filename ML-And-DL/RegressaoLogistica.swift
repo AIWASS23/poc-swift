@@ -3,7 +3,6 @@ import Foundation
 // Função sigmoide para calcular a probabilidade
 func sigmoid(_ x: Double) -> Double {
     return 1 / (1 + exp(-x)) // 1/(1 + (eˆ-x))
-
 }
 
 // Classe para o modelo de regressão logística
@@ -21,8 +20,8 @@ class LogisticRegression {
     // Função para treinar o modelo com os dados de entrada
     func fit(x: [[Double]], y: [Int], learningRate: Double = 0.01, epochs: Int = 1000) {
         for epoch in 0..<epochs {
-            var dw = Array(repeating: 0.0, count: weights.count)
-            var db = 0.0
+            var dWeights = Array(repeating: 0.0, count: weights.count)
+            var dBias = 0.0
             
             for i in 0..<x.count {
                 // Calcula a saída do modelo
@@ -31,14 +30,14 @@ class LogisticRegression {
                 
                 // Calcula o erro e o gradiente
                 let error = a - Double(y[i])
-                dw = vectorSum(dw, vectorScalarProduct(x[i], error))
-                db += error
+                dWeights = vectorSum(dWeights, vectorScalarProduct(x[i], error))
+                dBias += error
             }
             
             // Atualiza os pesos e o bias
             let m = Double(x.count)
-            weights = vectorSubtraction(weights, vectorScalarProduct(dw, learningRate / m))
-            bias -= db * learningRate / m
+            weights = vectorSubtraction(weights, vectorScalarProduct(dWeights, learningRate / m))
+            bias -= dBias * learningRate / m
         }
     }
     
@@ -62,14 +61,17 @@ class LogisticRegression {
         */
     }
     
+    // Recebe duas matrizes de números de ponto flutuante (double) a e b e retorna a soma das duas matrizes como um novo vetor.
     private func vectorSum(_ a: [Double], _ b: [Double]) -> [Double] {
         return zip(a, b).map(+)
     }
     
+    // Recebe duas matrizes de números de ponto flutuante (double) a e b e retorna a diferença das duas matrizes como um novo vetor.
     private func vectorSubtraction(_ a: [Double], _ b: [Double]) -> [Double] {
         return zip(a, b).map(-)
     }
     
+    // Recebe uma matriz de números de ponto flutuante (double) a e um valor escalar b e retorna o produto escalar da matriz a pelo valor b, como uma nova matriz.
     private func vectorScalarProduct(_ a: [Double], _ b: Double) -> [Double] {
         return a.map { $0 * b }
     }
