@@ -38,12 +38,12 @@ struct SVM {
                 // Atualiza os pesos e os viés se a perda for maior que 0
                 if loss > 0 {
                     
-                    let dLDW = multiply(w, lambda)
-                    let dLdw = subtract(dLDW, multiply(x, y * learningRate))
-                    let dLdb = -y
+                    let mult = multiply(w, lambda)
+                    let sub = subtract(mult, multiply(x, y * learningRate))
+                    let eixo = -y
                     
-                    w = subtract(w, multiply(dLdw, learningRate))
-                    b -= dLdb * learningRate
+                    w = subtract(w, multiply(sub, learningRate))
+                    b -= eixo * learningRate
                 }
             }
         }
@@ -58,10 +58,13 @@ struct SVM {
     
     // Calcula o produto escalar de dois vetores
     func dotProduct(_ vector1: [Double], _ vector2: [Double]) -> Double {
-        let zippedVectors = zip(vector1, vector2)
+        let zippedVectors = zip(vector1, vector2) // https://developer.apple.com/documentation/swift/zip(_:_:)
         let products = zippedVectors.map { $0 * $1 }
         return products.reduce(0.0, +)
     }
+
+    // realiza a multiplicação de duas matrizes de números de ponto flutuante (double). Ela recebe duas matrizes como parâmetros de entrada 
+    // matrix1 e matrix2 e retorna a matriz resultante da multiplicação das duas matrizes.
 
     func matrixMultiplication(_ matrix1: [[Double]], _ matrix2: [[Double]]) -> [[Double]] {
         var result = Array(repeating: Array(repeating: 0.0, count: matrix2[0].count), count: matrix1.count)
@@ -86,6 +89,7 @@ struct SVM {
     // Subtração entre 2 vetores
     private func subtract(_ a: [Double], _ b: [Double]) -> [Double] {
         
+        // Verifica uma condição necessária para avançar. https://developer.apple.com/documentation/swift/precondition(_:_:file:line:)
         precondition(a.count == b.count, "Vectors must have the same length")
         
         var result = [Double]()
