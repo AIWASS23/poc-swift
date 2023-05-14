@@ -123,3 +123,15 @@ class MLP {
         }
     }
 }
+
+let mlp = MLP(inputSize: 2, hiddenSize: 5, outputSize: 1, learningRate: 0.1)
+let inputs: [[Double]] = [[0, 0], [0, 1], [1, 0], [1, 1]]
+let targets: [[Double]] = [[0], [1], [1], [0]]
+mlp.train(inputs, targets, epochs: 1000)
+
+// Test the model on new inputs
+let testInputs: [[Double]] = [[0, 0], [0, 1], [1, 0], [1, 1]]
+for input in testInputs {
+    let output = mlp.forward(input)[0]
+    print("\(input[0]), \(input[1]) -> \(output)")
+}
