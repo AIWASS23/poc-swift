@@ -47,7 +47,7 @@ class MLP {
     }
 
     func sigmoidDerivative(x: Double) -> Double {
-        return sigmoid(x: x) * (1 - sigmoid(x: x))
+        return sigmoid(x) * (1 - sigmoid(x))
     }
     
     // Forward pass
