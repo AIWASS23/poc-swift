@@ -1,3 +1,4 @@
+
 import Foundation
 
 class MLP {
@@ -16,24 +17,28 @@ class MLP {
         self.outputSize = outputSize
         self.learningRate = learningRate
         
-        // Initialize weights and biases randomly
+        // Inicializa pesos e vieses aleatoriamente
         self.weights1 = []
         self.biases1 = []
         self.weights2 = []
         self.biases2 = []
+
         for _ in 0..<hiddenSize {
             self.weights1.append(Array(repeating: 0.0, count: inputSize))
             self.biases1.append(0.0)
         }
+
         for _ in 0..<outputSize {
             self.weights2.append(Array(repeating: 0.0, count: hiddenSize))
             self.biases2.append(0.0)
         }
+
         for i in 0..<hiddenSize {
             for j in 0..<inputSize {
                 self.weights1[i][j] = Double.random(in: -1...1)
             }
         }
+
         for i in 0..<outputSize {
             for j in 0..<hiddenSize {
                 self.weights2[i][j] = Double.random(in: -1...1)
@@ -41,18 +46,19 @@ class MLP {
         }
     }
     
-    // Sigmoid activation function
+    // Função sigmoide
     func sigmoid(_ x: Double) -> Double {
         return 1 / (1 + exp(-x))
     }
 
+    // Função derivada da sigmoide
     func sigmoidDerivative(x: Double) -> Double {
         return sigmoid(x) * (1 - sigmoid(x))
     }
     
-    // Forward pass
-    func forward(_ input: [Double]) -> [Double] {
-        // Hidden layer
+    // Passo direto
+    func forward(_ input: [Double]) -> ([Double], [Double]) {
+        // Camada oculta
         var hidden: [Double] = []
         for i in 0..<hiddenSize {
             var sum = biases1[i]
@@ -61,7 +67,7 @@ class MLP {
             }
             hidden.append(sigmoid(sum))
         }
-        // Output layer
+        // Camada de saída
         var output: [Double] = []
         for i in 0..<outputSize {
             var sum = biases2[i]
@@ -70,23 +76,23 @@ class MLP {
             }
             output.append(sigmoid(sum))
         }
-        return output
+        return (hidden, output)
     }
     
-    // Backward pass
+    // passo reverso
     func backward(_ input: [Double], _ target: [Double]) {
-        // Forward pass to get hidden and output values
-        let hidden = forward(input)[0..<hiddenSize]
-        let output = forward(input)
+        // Passo direto para obter valores ocultos e de saída
+        let (hidden, output) = forward(input)
+        let hiddenSlice = Array(hidden[0..<hiddenSize])
         
-        // Compute output layer errors
+        // Calcula erros da camada de saída
         var outputErrors: [Double] = []
         for i in 0..<outputSize {
-            let error = (target[i] - output[i]) * output[i] * (1 - output[i])
+            let error = output[i] * (1 - output[i]) * (target[i] - output[i])
             outputErrors.append(error)
         }
         
-        // Compute hidden layer errors
+        // Calcula erros de camada oculta
         var hiddenErrors: [Double] = []
         for i in 0..<hiddenSize {
             var error = 0.0
@@ -97,7 +103,7 @@ class MLP {
             hiddenErrors.append(error)
         }
         
-        // Update output layer weights and biases
+        // Atualiza os pesos e vieses da camada de saída
         for i in 0..<outputSize {
             for j in 0..<hiddenSize {
                 weights2[i][j] += learningRate * outputErrors[i] * hidden[j]
@@ -105,6 +111,7 @@ class MLP {
             biases2[i] += learningRate * outputErrors[i]
         }
 
+        // Atualiza os pesos e vieses da camada oculta
         for i in 0..<hiddenSize {
             for j in 0..<inputSize {
                 weights1[i][j] += learningRate * hiddenErrors[i] * input[j]
@@ -113,7 +120,7 @@ class MLP {
         }
     }
 
-    // Train the model on a dataset
+    // Treina o modelo em um conjunto de dados
     func train(_ inputs: [[Double]], _ targets: [[Double]], epochs: Int) {
         for epoch in 0..<epochs {
             for i in 0..<inputs.count {
@@ -129,9 +136,9 @@ let inputs: [[Double]] = [[0, 0], [0, 1], [1, 0], [1, 1]]
 let targets: [[Double]] = [[0], [1], [1], [0]]
 mlp.train(inputs, targets, epochs: 1000)
 
-// Test the model on new inputs
+// Testa o modelo em novas entradas
 let testInputs: [[Double]] = [[0, 0], [0, 1], [1, 0], [1, 1]]
 for input in testInputs {
-    let output = mlp.forward(input)[0]
+    let output = mlp.forward(input).0
     print("\(input[0]), \(input[1]) -> \(output)")
 }
