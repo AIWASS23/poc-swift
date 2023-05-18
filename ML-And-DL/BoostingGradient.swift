@@ -73,3 +73,20 @@ class BoostedModel {
     }
   }
 }
+
+// Create example data
+let inputs: [[Double]] = [[1.0, 2.0], [2.0, 3.0], [3.0, 4.0], [4.0, 5.0]]
+let targets: [Double] = [3.0, 5.0, 7.0, 9.0]
+
+// Create a BoostedModel instance
+let boostedModel = BoostedModel()
+
+// Train the boosted model
+boostedModel.train(inputs: inputs, targets: targets, learningRate: 0.1, epochs: 100, numModels: 3)
+
+// Test the trained model
+let testInputs: [[Double]] = [[5.0, 6.0], [6.0, 7.0]]
+for input in testInputs {
+    let prediction = boostedModel.predict(inputs: input)
+    print("Input: \(input), Prediction: \(prediction)")
+}
