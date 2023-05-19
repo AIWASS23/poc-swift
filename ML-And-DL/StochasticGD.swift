@@ -1,5 +1,11 @@
 import Foundation
 
+/*
+    A função stochasticGradientDescent é definida com quatro parâmetros: x e y são os dados de 
+    entrada e saída correspondentes, alpha é a taxa de aprendizado (learning rate) e 
+    numIterations é o número de iterações para executar o algoritmo. 
+    A função retorna um array de valores theta.
+*/
 func stochasticGradientDescent(x: [Double], y: [Double], alpha: Double, numIterations: Int) -> [Double] {
     var theta = Array(repeating: 0.0, count: x.count)
     

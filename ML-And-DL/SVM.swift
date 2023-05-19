@@ -90,7 +90,7 @@ struct SVM {
     private func subtract(_ a: [Double], _ b: [Double]) -> [Double] {
         
         // Verifica uma condição necessária para avançar. https://developer.apple.com/documentation/swift/precondition(_:_:file:line:)
-        precondition(a.count == b.count, "Vectors must have the same length")
+        precondition(a.count == b.count, "Os vetores devem ter o mesmo comprimento")
         
         var result = [Double]()
         for i in 0..<a.count {
