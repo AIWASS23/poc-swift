@@ -1,10 +1,3 @@
-//
-//  CustomNavBarView.swift
-//  CustomNavigationView
-//
-//  Created by Ganesh on 22/08/23.
-//
-
 import SwiftUI
 
 struct CustomNavBarView: View {
