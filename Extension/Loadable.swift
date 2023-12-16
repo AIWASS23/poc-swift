@@ -1,13 +1,6 @@
-//
-//  Loadable.swift
-//
-//
-//  Created by Kevin van den Hoek on 27/10/2023.
-//
-
 import Foundation
 
-public protocol LoadableProtocol {
+protocol LoadableProtocol {
     
     associatedtype Value
     
@@ -19,9 +12,9 @@ public protocol LoadableProtocol {
     var valueOrPlaceholder: Value { get }
 }
 
-public struct Loadable<Value>: LoadableProtocol {
+struct Loadable<Value>: LoadableProtocol {
     
-    public var state: LoadingState<Value> {
+    var state: LoadingState<Value> {
         didSet {
             switch state {
             case .loaded(let value):
@@ -31,10 +24,10 @@ public struct Loadable<Value>: LoadableProtocol {
             }
         }
     }
-    public var placeholder: Value
-    public var valueOrPlaceholder: Value { value ?? placeholder }
+    var placeholder: Value
+    var valueOrPlaceholder: Value { value ?? placeholder }
     
-    public var value: Value? {
+    var value: Value? {
         switch state {
         case .loaded(let value):
             return value
@@ -42,7 +35,7 @@ public struct Loadable<Value>: LoadableProtocol {
             return nil
         }
     }
-    public var error: Error? {
+    var error: Error? {
         switch state {
         case .error(let error):
             return error
@@ -50,7 +43,7 @@ public struct Loadable<Value>: LoadableProtocol {
             return nil
         }
     }
-    public var isLoading: Bool {
+    var isLoading: Bool {
         switch state {
         case .loading, .initial:
             return true
@@ -58,7 +51,7 @@ public struct Loadable<Value>: LoadableProtocol {
             return false
         }
     }
-    public var isInitial: Bool {
+    var isInitial: Bool {
         switch state {
         case .initial:
             return true
@@ -68,28 +61,28 @@ public struct Loadable<Value>: LoadableProtocol {
     }
     
     // MARK: Lifecycle
-    public static func placeholder(_ placeholder: Value) -> Self {
+    static func placeholder(_ placeholder: Value) -> Self {
         return .init(.initial, placeholder: placeholder)
     }
     
-    public static func loaded(_ value: Value) -> Self {
+    static func loaded(_ value: Value) -> Self {
         return .init(.loaded(value), placeholder: value)
     }
     
-    public init(_ state: LoadingState<Value> = .initial, placeholder: Value) {
+    init(_ state: LoadingState<Value> = .initial, placeholder: Value) {
         self.placeholder = placeholder
         self.state = state
     }
 }
 
-public enum LoadingState<Value> {
+enum LoadingState<Value> {
     case initial
     case loading
     case error(Error)
     case loaded(Value)
 }
 
-public extension Loadable {
+extension Loadable {
     
     func map<NewValue>(_ transform: (Value) -> NewValue) -> Loadable<NewValue> {
         switch state {
@@ -105,7 +98,7 @@ public extension Loadable {
     }
 }
 
-public extension Array where Element == any LoadableProtocol {
+extension Array where Element == any LoadableProtocol {
     
     var didAllLoad: Bool {
         return !contains(where: { $0.isLoading })
