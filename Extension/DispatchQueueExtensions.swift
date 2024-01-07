@@ -59,4 +59,12 @@ extension DispatchQueue {
             }
         }
     }
+
+    func asyncOnMainIfNecessary(execute work: @escaping () -> ()) {
+        if Thread.isMainThread {
+            work()
+        } else {
+            DispatchQueue.main.async(execute: work)
+        }
+    }
 }
