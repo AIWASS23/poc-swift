@@ -1,11 +1,23 @@
 import Foundation
 import SwiftUI
 
-private struct ScrollViewOffsetKey: EnvironmentKey {
+/*
+a estrutura chamada ElasticScrollView em SwiftUI, que permite criar uma ScrollView com 
+efeitos elásticos ao rolar o conteúdo. 
+
+ElasticScrollView {
+    // Seu conteúdo aqui
+}
+.elasticOffset(factor: 0.5) // Aplica um deslocamento elástico com um fator de 0.5
+.elasticTopPin() // Fixa o conteúdo na parte superior durante a rolagem
+.elasticScale() // Aplica um efeito de escala no conteúdo enquanto é rolado
+
+*/
+struct ScrollViewOffsetKey: EnvironmentKey {
     static let defaultValue: CGFloat = 0
 }
 
-public extension EnvironmentValues {
+extension EnvironmentValues {
     var scrollViewOffset: CGFloat {
         get { self[ScrollViewOffsetKey.self] }
         set { self[ScrollViewOffsetKey.self] = newValue }
@@ -20,18 +32,18 @@ private struct ViewOffsetKey: PreferenceKey {
     }
 }
 
-public struct ElasticScrollView<Content: View>: View {
+struct ElasticScrollView<Content: View>: View {
     let content: Content
     let showsIndicators: Bool
     
     @State private var offset: CGFloat = 0
     
-    public init(showsIndicators: Bool = true, @ViewBuilder content: () -> Content) {
+    init(showsIndicators: Bool = true, @ViewBuilder content: () -> Content) {
         self.showsIndicators = showsIndicators
         self.content = content()
     }
     
-    public var body: some View {
+    var body: some View {
         GeometryReader { outerGeometry in
             ScrollView(showsIndicators: showsIndicators) {
                 ZStack(alignment: .top) {
@@ -49,24 +61,10 @@ public struct ElasticScrollView<Content: View>: View {
             self.offset = max(0, offset)
         }
         .environment(\.scrollViewOffset, offset)
-//        ScrollView {
-//            VStack(spacing: 0) {
-//                GeometryReader { geometry in
-//                    Color.clear.preference(key: ViewOffsetKey.self, value: geometry.frame(in: .global).minY)
-//                }
-//                .frame(height: 0)
-//                content
-//            }
-//        }
-//        .overlay(
-//            Color.clear
-//                .contentShape(Rectangle())
-//                .coordinateSpace(name: "TopOffsetBoundingBoxView")
-//        )
     }
 }
 
-public extension View {
+extension View {
     
     func elasticOffset(factor: CGFloat) -> some View {
         modifier(ElasticOffsetModifier(factor: factor))

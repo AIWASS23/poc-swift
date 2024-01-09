@@ -1,4 +1,3 @@
-#if canImport(UIKit)
 import UIKit
 
 extension UIStackView {
@@ -19,4 +18,3 @@ extension UIStackView {
         return self
     }
 }
-#endif

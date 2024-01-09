@@ -4,6 +4,10 @@ import SwiftUI
 Esses métodos são úteis para ajustar o comportamento de layout das visualizações 
 no SwiftUI de acordo com os requisitos de alinhamento e tamanho desejados em 
 diferentes contextos de interface de usuário.
+
+Text("Hello, SwiftUI!")
+    .hLeading() // Alinha à esquerda horizontalmente
+    .vCenter() // Centraliza verticalmente
 */
 
 @available(macOS 10.15, *)

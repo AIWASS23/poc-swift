@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUI
 
-public extension View {
+extension View {
     
     /// Adds a redacted effect only if a condition is met (i.e. isLoading)
     @ViewBuilder
@@ -31,7 +31,7 @@ public extension View {
     }
 }
 
-private struct OpacityAnimationModifier: ViewModifier {
+struct OpacityAnimationModifier: ViewModifier {
     
     @State private var opacity: Double = 0.5
     
@@ -47,7 +47,7 @@ private struct OpacityAnimationModifier: ViewModifier {
     }
 }
 
-private struct SizePreferenceKey: PreferenceKey {
+struct SizePreferenceKey: PreferenceKey {
     typealias Value = CGSize
     
     static var defaultValue: Value = .zero
@@ -57,7 +57,7 @@ private struct SizePreferenceKey: PreferenceKey {
     }
 }
 
-private struct WithSizeBinding: ViewModifier {
+struct WithSizeBinding: ViewModifier {
     @Binding var size: CGSize
     
     func body(content: Content) -> some View {
@@ -71,7 +71,7 @@ private struct WithSizeBinding: ViewModifier {
     }
 }
 
-private struct ElasticOffsetPreferenceKey: PreferenceKey {
+struct ElasticOffsetPreferenceKey: PreferenceKey {
     typealias Value = CGFloat
     
     static var defaultValue: Value = .zero
@@ -81,7 +81,7 @@ private struct ElasticOffsetPreferenceKey: PreferenceKey {
     }
 }
 
-private struct WithElasticOffsetBinding: ViewModifier {
+struct WithElasticOffsetBinding: ViewModifier {
     @Binding var offset: CGFloat
     let padding: CGFloat
     

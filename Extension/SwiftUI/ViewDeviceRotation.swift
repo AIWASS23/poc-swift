@@ -8,6 +8,17 @@ A extensão onRotate oferece uma maneira de associar ações a mudanças na orie
 Para sistemas tvOS, ela atualmente executa uma ação específica de paisagem à esquerda, enquanto para 
 outros sistemas, ela permite a execução de ações personalizadas em resposta às mudanças na orientação 
 do dispositivo.
+
+@State private var deviceOrientation: UIDeviceOrientation = .unknown
+    
+    var body: some View {
+        Text("Exemplo de Uso do onRotate")
+            .onRotate { orientation in
+                self.deviceOrientation = orientation
+                // Faça algo com a orientação do dispositivo, por exemplo:
+                print("O dispositivo foi rotacionado para \(orientation)")
+            }
+    }
 */
 
 enum UIDeviceOrientation : Int, @unchecked Sendable {

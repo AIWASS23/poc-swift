@@ -1,5 +1,17 @@
 import SwiftUI
 
+/*
+a estrutura chamada FullSwipeNavigationStack que permite controlar a habilidade de 
+realizar um gesto de deslizar para voltar (pop) em uma pilha de navegação 
+(Navigation Stack) usando um gesto personalizado de deslizar.
+
+FullSwipeNavigationStack {
+    Text("Your content here")
+        .enableFullSwipePop(true) // Ativa o gesto de deslizar para voltar
+}
+
+*/
+
 struct FullSwipeNavigationStack<Content: View>: View {
     
     //MARK: - PROPERTIES

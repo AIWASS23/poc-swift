@@ -1,5 +1,13 @@
 import SwiftUI
 
+/*
+Esta extensão permite definir o tamanho de uma View de forma 
+proporcional à largura e à altura da tela do dispositivo.
+
+Rectangle()
+    .proportionalFrame(width: 0.8, height: 0.5)
+*/
+
 extension View {
     func propotionalFrame(
         width: CGFloat, 

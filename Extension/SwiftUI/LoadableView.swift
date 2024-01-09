@@ -1,6 +1,25 @@
 import Foundation
 import SwiftUI
 
+/*
+// Cria um objeto Loadable
+let myLoadableItem = Loadable<String>(value: "Conteúdo carregado com sucesso")
+
+// Define a estrutura LoadableView com blocos de construção para sucesso e falha
+LoadableView(myLoadableItem,
+    content: { loadedItem in
+        Text("Conteúdo: \(loadedItem)")
+    },
+    failure: { error in
+        Text("Falha ao carregar: \(error.localizedDescription)")
+    }
+)
+
+a estrutura LoadableView facilita a exibição de diferentes visualizações dependendo 
+do estado do carregamento de um item, tornando a interface do usuário mais dinâmica e 
+adaptável ao contexto de carregamento de dados.
+*/
+
 struct LoadableView<Content: View, Failure: View, Item>: View {
     
     let loadable: Loadable<Item>

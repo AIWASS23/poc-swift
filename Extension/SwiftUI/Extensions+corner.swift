@@ -1,6 +1,15 @@
 import Foundation
 import SwiftUI
 
+/*
+extensões para facilitar o arredondamento de números (roundDouble) e para adicionar 
+cantos arredondados a uma View (cornerRadius).
+
+Rectangle()
+    .cornerRadius(10, corners: [.topLeft, .bottomRight])
+
+*/
+
 extension Double{
     func roundDouble() -> String{
         return String(format: "%.0f",self)

@@ -1,7 +1,14 @@
-
-#if !os(macOS)
 import Foundation
 import SwiftUI
+
+/*
+
+let swiftUIView = Text("Hello, SwiftUI!") 
+// Sua View do SwiftUI que deseja converter em UIImage
+let image = swiftUIView.toUIImage() 
+// Converte a View para UIImage
+
+*/
 
 extension View {
     
@@ -34,4 +41,3 @@ extension UIView {
         }
     }
 }
-#endif

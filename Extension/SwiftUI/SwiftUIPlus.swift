@@ -1,5 +1,29 @@
 import SwiftUI
 
+/*
+conjunto de extensões e estruturas em SwiftUI foi criado para facilitar a obtenção e 
+uso das áreas seguras (safe areas) em aplicativos iOS, considerando as margens seguras 
+de dispositivos que possuem "notch" ou barras como a barra de status, barra 
+de navegação, etc.
+
+struct ContentView: View {
+    @State private var safeAreaInsets = EdgeInsets()
+    
+    var body: some View {
+        Text("Hello, Safe Area!")
+            .getSafeAreaInsets($safeAreaInsets)
+    }
+}
+
+struct DebugView: View {
+    var body: some View {
+        Color.red
+            .printSafeAreaInsets(id: "DebugView")
+    }
+}
+
+*/
+
 @available(iOS 13.0, *)
 extension UIEdgeInsets {
     
