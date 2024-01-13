@@ -1,0 +1,30 @@
+import SwiftUI
+
+struct Example: View {
+    
+    @State private var icon = "star.fill"
+    @State private var isPresented = false
+    
+    var body: some View {
+        NavigationView {
+            VStack {
+                Button("Select a symbol") {
+                    isPresented.toggle()
+                }
+                
+                Image(systemName: icon).font(.title3)
+                    .sheet(
+                        isPresented: $isPresented, content: {
+                            SymbolsPicker(
+                                selection: $icon, 
+                                title: "Choose your symbol", 
+                                autoDismiss: true
+                            )
+                        }
+                    )
+                    .padding()
+            }
+            .navigationTitle("SF Symbols Picker")
+        }
+    }
+}
