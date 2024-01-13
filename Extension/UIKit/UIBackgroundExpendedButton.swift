@@ -1,6 +1,6 @@
 import UIKit
 
-final class UIBackgroundExpendedButton: UIButton {
+class UIBackgroundExpendedButton: UIButton {
 
 	lazy var backgroundImageInsets: UIEdgeInsets = contentEdgeInsets {
 		didSet {
