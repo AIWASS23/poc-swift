@@ -1,5 +1,11 @@
 import Foundation
 
+/*
+    O objetivo deste código é fornecer uma maneira centralizada e segura para armazenar 
+    e recuperar configurações e preferências do usuário, como o nome padrão 
+    (defaultName) e um indicador de configuração inicial (firstTimeSetupCompleted).
+*/
+
 enum Preferences {
     fileprivate enum Key {
         static let defaultName = "defaultName"
