@@ -30,6 +30,20 @@ extension String.StringInterpolation {
 		let string = String(decoding: result, as: UTF8.self)
 		appendLiteral(string)
 	}
+
+	mutating func appendInterpolation(centered text: String, width: UInt16, filling: Character = " ") {
+        let padding = max(0, Int(width) - text.count)
+        let leftPadding = padding / 2
+        let rightPadding = padding - leftPadding
+
+        let centeredText = String(repeating: filling, count: leftPadding) + text + String(repeating: filling, count: rightPadding)
+        appendLiteral(centeredText)
+    }
+    mutating func appendInterpolation(_ text: String, width: UInt16) {
+        let paddingR = max(0, Int(width) - text.count)
+        
+        appendLiteral(text+String(repeating: " ", count: paddingR))
+    }
 }
 
 struct ColoredString: ExpressibleByStringInterpolation {
