@@ -39,3 +39,19 @@ extension Binding {
         Binding<Bool>(bindingOptional: self)
     }
 }
+
+extension Binding {
+	
+	static func rawValue<T:RawRepresentable>(for binding:Binding<T>) -> Binding<T.RawValue> where T:Equatable {
+		return Binding<T.RawValue>(
+		    get: {binding.wrappedValue.rawValue},
+			
+			set: {
+				guard let value = T.init(rawValue:$0) else { return }
+				if binding.wrappedValue != value {
+					binding.wrappedValue = value
+				}
+			}
+        )
+	}
+}
